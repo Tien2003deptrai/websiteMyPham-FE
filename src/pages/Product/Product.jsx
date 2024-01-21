@@ -31,12 +31,13 @@ const ProductsList = () => {
             <h2 className="mb-4">Product List</h2>
             <div className="row">
                 {products.map((product) => (
-                    <div key={product.id} className="col-md-4 mb-4">
+                    <div key={product.id} className="col-md-3 mb-2">
                         <ProductCard product={product} />
                     </div>
                 ))}
             </div>
         </div>
+
     );
 };
 

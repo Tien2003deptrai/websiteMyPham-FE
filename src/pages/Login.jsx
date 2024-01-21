@@ -26,9 +26,9 @@ const Login = () => {
                 console.log('User:', response);
 
                 if (response.role === ROLES.ADMIN) {
-                    navigate('/admin-dashboard');
+                    navigate('/admin');
                 } else if (response.role === ROLES.CUSTOMER) {
-                    navigate('/customer-dashboard');
+                    navigate('/customer');
                 }
             } else {
                 console.error('Token or role is missing in the server response.');

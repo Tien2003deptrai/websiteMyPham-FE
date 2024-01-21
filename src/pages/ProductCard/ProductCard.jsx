@@ -1,18 +1,31 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
     return (
-        <div className="card" style={{ width: '18rem' }}>
-            <img src={product.thumbnail} className="card-img-top" alt={product.title} />
-            <div className="card-body">
-                <h5 className="card-title">{product.title}</h5>
-                <p className="card-text">Price: ${product.price}</p>
-                <NavLink to={`/product/${product.id}`} className="btn btn-outline-primary">Buy Now</NavLink>
-            </div>
-        </div >
+        <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+                component="img"
+                alt={product.title}
+                height="140"
+                image={product.images[0]}
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {product.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    Price: ${product.price}
+                </Typography>
+                <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
+                    <Button variant="contained" color="primary">
+                        Buy Now
+                    </Button>
+                </Link>
+            </CardContent>
+        </Card>
     );
 };
-
 
 export default ProductCard;
