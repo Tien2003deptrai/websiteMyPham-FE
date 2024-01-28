@@ -31,15 +31,19 @@ const ProductDetail = () => {
 
     const handleCart = () => {
         const isInCart = cart && cart.some((item) => item.id === product.id);
-        console.log('isInCart:', isInCart);
+
         if (isInCart) {
-            console.log('Removing from cart:', product);
-            dispatch(__deleteItem(product));
+            console.log('Updating quantity in cart:', product);
+            const updatedCart = cart.map((item) =>
+                item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+            );
+            dispatch({ type: 'UPDATE_QUANTITY', payload: updatedCart });
         } else {
             console.log('Adding to cart:', product);
             dispatch(__addItem(product));
         }
     };
+
 
     return (
         <div className="row d-flex justify-content-center py-5">

@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ActionProduct from './../ActionProduct/ActionProduct';
 
 const ProductItem = (props) => {
     const { product, index } = props;
+    const [showActionProduct, setShowActionProduct] = useState(false);
     const statusName = product.quantity > 0 ? "Còn Hàng" : "Hết Hàng";
+
+    const handleAddProductClick = () => {
+        setShowActionProduct(true);
+    };
+
+    const onDelete = (id) => {
+        props.onDelete(id);
+    }
 
     return (
         <tr>
@@ -18,16 +28,17 @@ const ProductItem = (props) => {
             <td>{product.title}</td>
             <td>{product.brand}</td>
             <td>${product.price}</td>
-            <td>{product.quantity}</td> {/* Hiển thị thông tin tồn kho */}
+            <td>{product.quantity}</td>
             <td>
                 <span className={`badge ${product.quantity > 0 ? 'bg-warning' : 'bg-danger'} text-dark`}>
                     {statusName}
                 </span>
             </td>
             <td>
+
                 <Link
-                    to={`/product/${product.id}/edit`}
-                    className="btn btn-success mr-10"
+                    to={`/product/update/${product.id}`}
+                    className="btn btn-success mr-3"
                 >
                     Sửa
                 </Link>

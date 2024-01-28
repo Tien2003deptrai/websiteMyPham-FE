@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { AuthUser } from '../../../context/authContext';
 import ProductItem from './ProducItem/ProductItem';
 import ProductList from './ProductList/ProducList';
-import ActionProduct from './ActionProduct/ActionProduct';  // Import ActionProduct component
+import ActionProduct from './ActionProduct/ActionProduct';
 import './Product.css';
 
 const Product = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [showActionProduct, setShowActionProduct] = useState(false);  // State để kiểm soát hiển thị ActionProduct
+    const [showActionProduct, setShowActionProduct] = useState(false);
     const { getData } = AuthUser();
 
     useEffect(() => {
@@ -27,7 +27,6 @@ const Product = () => {
     }, []);
 
     const handleAddProductClick = () => {
-        // Hiển thị ActionProduct khi người dùng click vào nút "Thêm Sản Phẩm"
         setShowActionProduct(true);
     };
 

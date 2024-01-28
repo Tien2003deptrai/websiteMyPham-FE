@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthUser } from '.././context/authContext';
-import { toast } from 'react-toastify';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -28,39 +27,38 @@ const Login = () => {
                 if (response.role === ROLES.ADMIN) {
                     navigate('/admin');
                 } else if (response.role === ROLES.CUSTOMER) {
-                    navigate('/customer');
+                    navigate('/');
                 }
             } else {
                 console.error('Token or role is missing in the server response.');
             }
         } catch (error) {
             console.error(error);
-            toast.error('Email or password is incorrect.', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'colored',
-            });
         }
     };
 
-
     return (
-        <div>
-            <h2>Login</h2>
-            <label>
-                Email:
-                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </label>
-            <label>
-                Password:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <button onClick={handleLogin}>Login</button>
+        <div className="container mt-5">
+            <div className="row">
+                <div className="col-md-6">
+                    <h2>Login</h2>
+                    <div className="mb-3">
+                        <label className="form-label">Email:</label>
+                        <input type="text" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Password:</label>
+                        <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <button className="btn btn-primary me-3" onClick={handleLogin}>
+                        Login
+                    </button>
+                    <Link to="/register" className="btn btn-success">
+                        Register
+                    </Link>
+                </div>
+            </div>
+
         </div>
     );
 };

@@ -13,16 +13,28 @@ const rootReducer = (state = loadFromLocalStorage(), action) => {
     console.log('Action:', action);
 
     switch (action.type) {
-        // case Types.ADD_PRODUCT:
-        //     const newProductAdd = [...state, { ...action.payload, quantity: 1 }]; // Set initial quantity to 1
-        //     saveToLocalStorage(newProductAdd);
-        //     return newProductAdd;
-        case Types.ADD_PRODUCT:
-            const newProductAdd = [...state, { ...action.payload, quantity: 1 }]; // Set initial quantity to 1
-            saveToLocalStorage(newProductAdd);
-            console.log('New State after ADD_PRODUCT:', newProductAdd);
-            return newProductAdd;
 
+        case Types.ADD_PRODUCT:
+            const existingProduct = state.find(product => product._id === action.payload._id);
+
+            if (existingProduct) {
+                const updatedState = state.map(product => {
+                    if (product._id === action.payload._id) {
+                        return { ...product, quantity: product.quantity + 1 };
+                    }
+                    return product;
+                });
+
+                saveToLocalStorage(updatedState);
+                console.log('New State after ADD_PRODUCT (Product existed):', updatedState);
+                return updatedState;
+            } else {
+                // Nếu sản phẩm chưa tồn tại, thêm mới vào giỏ hàng
+                const newProductAdd = [...state, { ...action.payload, quantity: 1 }];
+                saveToLocalStorage(newProductAdd);
+                console.log('New State after ADD_PRODUCT (Product added):', newProductAdd);
+                return newProductAdd;
+            }
 
         case Types.DELETE_PRODUCT:
             console.log('Reducer: Đang xóa sản phẩm khỏi trạng thái', action.payload.id);

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { __clearCart, __deleteItem, __updateQuantity } from './../../redux/actions/actionProduct';
 import { postData } from './../../hook/useFetch';
+import { color } from "@mui/system";
 
 const Cart = () => {
     const [userInfo, setUserInfo] = useState({
@@ -80,6 +81,12 @@ const Cart = () => {
                     console.log('Success checkout:', response.message);
 
                     dispatch(__clearCart());
+
+                    setUserInfo({
+                        country: "",
+                        city: "",
+                        phone: "",
+                    });
                 } else {
                     console.error('Error during checkout:', response.message);
                 }
@@ -117,7 +124,7 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     ));
     const handleInputChange = (e) => {
         const { name, value } = e.target;

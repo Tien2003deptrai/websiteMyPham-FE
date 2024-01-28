@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthUser = () => {
+
+    const navigate = useNavigate();
 
     const getToken = () => localStorage.getItem('token');
     const getUser = () => localStorage.getItem('user');
@@ -21,23 +24,15 @@ export const AuthUser = () => {
         setRole(role);
     };
 
-    // const logout = () => {
-    //     localStorage.clear();
-    //     navigate('/login')
-    //     toast.success('Logout successful!', {
-    //         position: "top-right",
-    //         autoClose: 3000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         pauseOnHover: true,
-    //         draggable: true,
-    //         progress: undefined,
-    //         theme: "colored",
-    //     })
-    // }
+
+    const logout = () => {
+        localStorage.clear();
+        navigate('/login');
+    }
 
     const http = axios.create({
-        baseURL: 'http://localhost:5000/api',
+        // baseURL: 'http://localhost:5000/api',
+        baseURL: 'https://service-apiis.onrender.com/api',
         withCredentials: true,
         headers: {
             "Content-Type": "application/json",
@@ -70,6 +65,7 @@ export const AuthUser = () => {
         getToken,
         postData,
         getData,
+        logout
     };
 };
 

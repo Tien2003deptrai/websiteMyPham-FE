@@ -4,6 +4,7 @@ import Navbar from './layouts/Navbar/Navbar';
 import Footer from './layouts/Footer/Footer';
 import Loading from './components/Loading/Loading';
 import PriceSlider from './components/PriceSlider/PriceSlider';
+import Register from './pages/Register/Register';
 const Blog = React.lazy(() => import('./pages/Blog/Blog'));
 const Smember = React.lazy(() => import('./pages/Smember/Smember'));
 const Home = React.lazy(() => import('./pages/Home/Home'));
@@ -15,6 +16,7 @@ const ProductList = React.lazy(() => import('./pages/Product/Product'));
 const ProductDetail = React.lazy(() => import('./pages/ProductDetail/ProductDetail'));
 const Cart = React.lazy(() => import('./pages/Cart/Cart'));
 const Admin = React.lazy(() => import('./pages/Admin/Admin'));
+const About = React.lazy(() => import('./pages/About/About'));
 
 const ProjectRoutes = () => {
     const ROLE_ADMIN = 'admin';
@@ -42,7 +44,7 @@ const ProjectRoutes = () => {
                     </>
                 }
                 >
-                    <Route index element={<Home />} />
+                    <Route path='/' element={<Home />} />
                     {/* <Route path='/admin' element={<AdminPage />} /> */}
                     {/* <Route path='/admin/profile' element={<UserProfile />} /> */}
                     <Route path='/customer' element={<CustomerPage />} />
@@ -53,9 +55,11 @@ const ProjectRoutes = () => {
                     <Route path='/smember' element={<Smember />} />
                     <Route path='/blog' element={<Blog />} />
                     <Route path='/slider' element={<PriceSlider />} />
+                    <Route path='/about' element={<About />} />
 
                 </Route>
                 <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
 
                 <Route
                     path="/admin/*"

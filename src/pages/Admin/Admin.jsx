@@ -5,11 +5,13 @@ const ActionProduct = React.lazy(() => import('./Product/ActionProduct/ActionPro
 const Order = React.lazy(() => import('./Order/Order'));
 const Profile = React.lazy(() => import('./Profile/Profile'));
 const Product = React.lazy(() => import('./Product/Product'));
+const Home = React.lazy(() => import('./Home/Home'));
 
 const Admin = () => {
     return (
         <Routes  >
-            <Route path="/" element={<Dashboard />} exact />
+            <Route path="/" element={<Home />} exact />
+            <Route path="/dashboard" element={<Dashboard />} exact />
             <Route path="/order" element={<Order />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/products" element={<Product />} />

@@ -14,15 +14,20 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import ButtonCart from './../../components/ButtonCart/ButtonCart';
-import TextField from '@mui/material/TextField';
+import TextFieldimport from '@mui/material/TextField';
+import { AuthUser } from '../../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
-const pages = ['About Mini', 'Find Goragety', 'Pricing', 'Blog', 'Location'];
-const settings = ['Smember', 'Account', 'Dashboard', 'Logout'];
+const pages = ['About', 'Find Goragety', 'Pricing', 'Blog', 'Location'];
+const settings = ['Smember', 'Account', 'Login', 'Logout'];
 
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [hidden, setHidden] = useState(true);
+    const navigate = useNavigate();
+    const { logout } = AuthUser();
+
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -39,15 +44,18 @@ const Navbar = () => {
 
     const handleCloseUserMenu = (event) => {
 
-        event.stopPropagation();
         setAnchorElUser(null);
         setHidden(!hidden);
     };
 
-
+    const handleLogout = () => {
+        logout();
+        handleCloseUserMenu();
+        navigate('/login');
+    };
     return (
         <>
-            <AppBar position="fixed">
+            <AppBar position="fixed" sx={{ backgroundColor: 'black' }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -133,7 +141,7 @@ const Navbar = () => {
                         </Box>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', marginRight: '20px', width: '20px !important' } }}>
-                            <TextField
+                            <TextFieldimport
                                 label="Search"
                                 variant="outlined"
                                 fullWidth
@@ -171,14 +179,17 @@ const Navbar = () => {
                                 >
                                     {settings.map((setting) => (
                                         <MenuItem key={setting} onClick={(event) => {
-                                            handleCloseUserMenu(event);
+                                            if (setting.toLowerCase() === 'logout') {
+                                                handleLogout(event);  // Pass the event to handleLogout
+                                            } else {
+                                                handleCloseUserMenu(event);
+                                            }
                                         }}>
                                             <Link to={`/${setting.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                                 <Typography textAlign="center">{setting}</Typography>
                                             </Link>
                                         </MenuItem>
                                     ))}
-
                                 </Menu> : <></>
                             }
                         </Box>
