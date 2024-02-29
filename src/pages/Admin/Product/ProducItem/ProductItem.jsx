@@ -38,13 +38,13 @@ const ProductItem = (props) => {
 
                 <Link
                     to={`/product/update/${product.id}`}
-                    className="btn btn-success mr-3"
+                    className="btn btn-success"
                 >
                     Sửa
                 </Link>
                 <button
                     type="button"
-                    className="btn btn-danger"
+                    className="btn btn-danger ms-3"
                 >
                     Xoá
                 </button>

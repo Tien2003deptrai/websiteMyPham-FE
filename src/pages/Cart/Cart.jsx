@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { __clearCart, __deleteItem, __updateQuantity } from './../../redux/actions/actionProduct';
 import { postData } from './../../hook/useFetch';
 import { color } from "@mui/system";
+import './Cart.css'
+import { sendToast } from "../../config/configToast";
 
 const Cart = () => {
     const [userInfo, setUserInfo] = useState({
@@ -74,8 +76,6 @@ const Cart = () => {
 
             const response = await postData('/checkout', checkoutData);
 
-            console.log('Response Data:', response);
-
             if (response && response.success !== undefined) {
                 if (response.success) {
                     console.log('Success checkout:', response.message);
@@ -87,12 +87,14 @@ const Cart = () => {
                         city: "",
                         phone: "",
                     });
+                    sendToast('Checkout Successfully');
                 } else {
                     console.error('Error during checkout:', response.message);
                 }
             } else {
                 console.error('Invalid response structure during checkout:', response);
             }
+
 
         } catch (error) {
             console.log('Error during checkout:', error);
@@ -120,7 +122,7 @@ const Cart = () => {
                         <div style={{ width: 80 }}>
                             <h5 className="mb-0">${item.price}</h5>
                         </div>
-                        <button className="btn btn-outline-danger" onClick={() => handleClose(item)}><i className="fas fa-trash-alt"></i></button>
+                        <button className="btn btn-outline-danger" onClick={() => handleClose(item)}><i className="fas fa-trash-alt">Remove</i></button>
                     </div>
                 </div>
             </div>

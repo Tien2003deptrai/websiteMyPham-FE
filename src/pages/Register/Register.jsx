@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthUser } from '../../context/authContext';
+import { sendToast } from '../../config/configToast';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -12,15 +13,10 @@ const Register = () => {
     const handleRegister = async () => {
         try {
             let response = await postData('/auth/register', { name, email, password });
-            console.log('Server Response:', response);
-
-            if (response.token && response.role) {
-                setToken(response, response.token, response.role);
-
-                console.log('Token:', response.token);
-                console.log('User:', response);
-
+            if (response) {
+                setToken(response, response.token);
                 navigate('/login');
+                sendToast('Register Successfully');
             } else {
                 console.error('Token or role is missing in the server response.');
             }
@@ -30,36 +26,41 @@ const Register = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <h2>Register</h2>
-            <div className="mb-3">
-                <label className="form-label">Name:</label>
-                <input type="text" className="form-control" value={name} onChange={(e) => setName(e.target.value)} />
+        <div className="container" style={{ marginTop: '200px' }}>
+            <div className="row justify-content-center align-items-center">
+                <div className="col-md-6">
+                    <h2 className=''>Register</h2>
+                    <div className="mb-3">
+                        <label className="form-label">Name:</label>
+                        <input type="text" className="form-control"
+                            style={{ width: '400px' }}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3" >
+                        <label className="form-label">Email:</label>
+                        <input type="text" className="form-control"
+                            style={{ width: '400px' }}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Password:</label>
+                        <input type="password" className="form-control"
+                            style={{ width: '400px' }}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <button className="btn btn-primary me-3" onClick={handleRegister}>
+                        Register
+                    </button>
+                    <Link to="/login" className="btn btn-success">
+                        Login
+                    </Link>
+                </div>
             </div>
-            <div className="mb-3">
-                <label className="form-label">Email:</label>
-                <input type="text" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div className="mb-3">
-                <label className="form-label">Password:</label>
-                <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <button className="btn btn-success" onClick={handleRegister}>
-                Register
-            </button>
-            <p>
-                Already have an account? <Link to="/login">Login here</Link>
-            </p>
-
-            {/* Bootstrap CDN Links */}
-            <link
-                rel="stylesheet"
-                href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-                integrity="sha384-rGv538WH5EQ3POJ0d6XYb56JO/bLD3X0N8uJx2Go/rs2+aW3ZtAqPVgE+6Mz5fEK"
-                crossOrigin="anonymous"
-            />
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263Xm2jQDlMXABsIbr5NEFip2Sl" crossOrigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGiUktpQ5/cMOf9bC1ARjUc5I3l85RwRT" crossOrigin="anonymous"></script>
         </div>
     );
 };

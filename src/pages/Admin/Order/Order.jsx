@@ -9,7 +9,7 @@ const Order = () => {
     useEffect(() => {
         const fetchCheckouts = async () => {
             try {
-                const response = await getData('/admin/checkout');
+                const response = await getData('admin/checkout');
 
                 if (response.data.success) {
                     setCheckouts(response.data.checkouts);

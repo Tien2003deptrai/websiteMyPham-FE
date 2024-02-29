@@ -6,7 +6,6 @@ import './Home.css';
 const Home = () => {
 
     return (
-
         <>
             <Carousel />
             <ProductsList />

@@ -102,6 +102,7 @@ export default function Home() {
     const [selectedContent, setSelectedContent] = useState('inbox');
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
+    const defaultAvatarUrl = 'https://example.com/avatar.jpg';
 
 
     useEffect(() => {
@@ -117,12 +118,6 @@ export default function Home() {
 
         fetchData();
     }, []);
-
-    // const user = {
-    //     name: 'John Doe', // Replace with the actual user's name
-    //     avatarUrl: 'https://example.com/avatar.jpg', // Replace with the actual user's avatar URL
-    // };
-    const defaultAvatarUrl = 'https://example.com/avatar.jpg'; // replace with your default avatar image URL
 
     const handleDrawerOpen = () => {
         setOpen(true);
