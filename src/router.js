@@ -5,6 +5,7 @@ import Footer from './layouts/Footer/Footer';
 import Loading from './components/Loading/Loading';
 import PriceSlider from './components/PriceSlider/PriceSlider';
 import Register from './pages/Register/Register';
+import Location from './pages/Location/Location';
 const Blog = React.lazy(() => import('./pages/Blog/Blog'));
 const Smember = React.lazy(() => import('./pages/Smember/Smember'));
 const Home = React.lazy(() => import('./pages/Home/Home'));
@@ -56,6 +57,7 @@ const ProjectRoutes = () => {
                     <Route path='/blog' element={<Blog />} />
                     <Route path='/slider' element={<PriceSlider />} />
                     <Route path='/about' element={<About />} />
+                    <Route path='/location' element={<Location />} />
 
                 </Route>
                 <Route path='/login' element={<Login />} />

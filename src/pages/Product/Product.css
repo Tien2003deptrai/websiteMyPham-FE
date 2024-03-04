@@ -1,0 +1,30 @@
+/* body {
+
+} */
+
+.container {
+  /* margin: 5rem 20px; */
+  justify-content: center;
+  font-family: var(--font-raleway);
+  /* background-color: #212426; */
+}
+
+.app {
+  background-color: #212426;
+  margin: 100px 200px !important;
+}
+
+.input-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  /* margin-bottom: 20px; */
+}
+
+.input-container input {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

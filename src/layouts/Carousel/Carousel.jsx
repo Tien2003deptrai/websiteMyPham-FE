@@ -1,10 +1,6 @@
 import React from 'react';
-import img_main from '../../img/img-main1.png';
-import img_main1_1 from '../../img/img-main1_1.png';
-import img_main1_2 from '../../img/img-main1_2.png';
-import img_main2 from '../../img/img-main2.png';
-import img_main3 from '../../img/img-main3.png';
-import img_main4 from '../../img/img-main4.png';
+import imgMain from '../../img/main.png';
+
 import './Carousel.css';
 
 const Carousel = () => {
@@ -16,8 +12,8 @@ const Carousel = () => {
                         <div id="carouselExample" className="carousel slide">
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
-                                    <img src="https://png.pngtree.com/background/20230519/original/pngtree-the-main-area-of-a-men-s-clothing-store-picture-image_2661545.jpg"
-                                        className="d-block w-100" alt="..." style={{ height: 600, maxWidth: '100%' }} />
+                                    <img src={imgMain}
+                                        className="d-block w-100" alt="..." style={{ height: 700, width: '100%' }} />
                                 </div>
                             </div>
                             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

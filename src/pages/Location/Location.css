@@ -1,0 +1,22 @@
+.headerTitle {
+  font-size: 13px;
+  text-decoration: none !important;
+  color: #333e48;
+}
+
+.backgroundBrand {
+  background-color: #ebebeb;
+}
+
+img {
+  width: 95%;
+}
+
+.headerTitleBrand {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.note {
+  height: 200px;
+}

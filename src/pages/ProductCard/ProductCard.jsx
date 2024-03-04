@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
                     alt='movie.Title' />
             </div>
             <div>
-                <span>{product.category}</span>
+                <span>{product.brand}</span>
                 <h3>{product.title}</h3>
                 <h3>${product.price}</h3>
                 <h3>
