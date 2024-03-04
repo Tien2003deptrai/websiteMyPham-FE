@@ -6,21 +6,13 @@ import hydraImg from '../../img/Hydra.png';
 import foreoImg from '../../img/foreo.png';
 import salesImg from '../../img/sales.png';
 import './Product.css';
-
-// const filteredData = (cards, key) => {
-//     return cards.filter(card => {
-//         return Object.values(card).some(value => {
-//             return value.toString().toLowerCase().includes(key);
-//         })
-//     })
-// }
+import { Link } from 'react-router-dom';
 
 const ProductsList = () => {
     const [gucci, setGucci] = useState([]);
     const [hydra, setHyDra] = useState([]);
     const [foreo, setForeo] = useState([]);
     const [rating, setRating] = useState([]);
-    // const [searchTerm, setSearchTerm] = useState('');
 
     const { getData } = AuthUser();
 
@@ -45,11 +37,10 @@ const ProductsList = () => {
     }, []);
 
     const renderProductList = (productList) => {
-        // const filteredProducts = filteredData(productList, searchTerm);
         return (
-            <div className="container mt-5">
+            <div className="container mt-2">
                 <div className="row">
-                    {productList.map((product) => (
+                    {productList.slice(0, 4).map((product) => (
                         <div key={product.id} className="col-md-3 mb-2">
                             <ProductCard product={product} />
                         </div>
@@ -59,34 +50,37 @@ const ProductsList = () => {
         );
     };
 
-
     return (
         <>
             <div className='app'>
                 <div className="container mt-5">
                     <img src={gucciImg} alt="gucci" width={'100%'} />
-                    {/* <div className="input-container">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                    </div> */}
                     {renderProductList(gucci)}
                     <div className='text-center mb-4'>
-                        {/* <button className='btn btn-primary'>Xem thêm sản phẩm</button> */}
+                        <Link to={'/gucci'}>
+                            <button className='btn btn-primary'>Xem thêm sản phẩm</button>
+                        </Link>
                     </div>
                 </div>
 
                 <div className="container">
                     <img src={hydraImg} alt="hydra" width={'100%'} height={'900px'} />
                     {renderProductList(hydra)}
+                    <div className='text-center mt-2 mb-4'>
+                        <Link to={'/hydra'}>
+                            <button className='btn btn-primary'>Xem thêm sản phẩm</button>
+                        </Link>
+                    </div>
                 </div>
 
                 <div className="container">
                     <img src={foreoImg} alt="foreo" width={'100%'} />
                     {renderProductList(foreo)}
+                    <div className='text-center mt-2 mb-2'>
+                        <Link to={'/foreo'}>
+                            <button className='btn btn-primary'>Xem thêm sản phẩm</button>
+                        </Link>
+                    </div>
                 </div>
 
                 <div className="container mt-5">

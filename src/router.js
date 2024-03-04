@@ -6,6 +6,9 @@ import Loading from './components/Loading/Loading';
 import PriceSlider from './components/PriceSlider/PriceSlider';
 import Register from './pages/Register/Register';
 import Location from './pages/Location/Location';
+import Gucci from './pages/Product/Gucci/Gucci';
+import Hydra from './pages/Product/Hydra/Hydra';
+import Foreo from './pages/Product/Foreo/Foreo';
 const Blog = React.lazy(() => import('./pages/Blog/Blog'));
 const Smember = React.lazy(() => import('./pages/Smember/Smember'));
 const Home = React.lazy(() => import('./pages/Home/Home'));
@@ -58,6 +61,9 @@ const ProjectRoutes = () => {
                     <Route path='/slider' element={<PriceSlider />} />
                     <Route path='/about' element={<About />} />
                     <Route path='/location' element={<Location />} />
+                    <Route path='/gucci' element={<Gucci />} />
+                    <Route path='/hydra' element={<Hydra />} />
+                    <Route path='/foreo' element={<Foreo />} />
 
                 </Route>
                 <Route path='/login' element={<Login />} />

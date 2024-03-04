@@ -19,7 +19,7 @@ import { AuthUser } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { sendToast } from '../../config/configToast';
 
-const pages = ['About', 'Find Goragety', 'Pricing', 'Blog', 'Location'];
+const pages = ['About', 'Blog', 'Location'];
 const settings = ['Smember', 'Account', 'Login', 'Logout'];
 
 const Navbar = () => {
